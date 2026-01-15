@@ -68,7 +68,8 @@ export default function CarCarousel() {
           className="overflow-visible"
         >
           {cars.map((car, i) => {
-            const angle = Math.PI - i * angleStep; // spread across 180 degrees
+            const adjustedIndex = (i - index + 1 + cars.length) % cars.length;
+            const angle = Math.PI - adjustedIndex * angleStep; // spread across 180 degrees
             const x = 250 + radius * Math.cos(angle);
             const y = 250 - radius * Math.sin(angle);
             const active = i === index;
@@ -79,8 +80,10 @@ export default function CarCarousel() {
                 x={x}
                 y={y}
                 textAnchor="middle"
+                dominantBaseline="middle"
                 fill={active ? "#38bdf8" : "#aaa"}
-                fontSize={active ? "18" : "14"}
+                fontSize={active ? "24" : "14"}
+                fontWeight={active ? "600" : "normal"}
                 className="cursor-pointer select-none transition-all duration-300"
                 onClick={() => setIndex(i)}
               >

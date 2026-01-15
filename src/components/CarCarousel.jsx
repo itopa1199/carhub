@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import caroneImg from "../assets/carone.jpg";
-import cartwoImg from "../assets/cartwo.jpg";
+import caroneImg from "../assets/car1.jpg";
+import cartwoImg from "../assets/car2.jpg";
+import carthree from "../assets/car3.jpg";
 
 const cars = [
   {
@@ -14,7 +15,7 @@ const cars = [
   },
   {
     name: "Pajero",
-    img: "https://images.unsplash.com/photo-1603048297872-59b727c4f49f?auto=format&fit=crop&w=900&q=80",
+    img: carthree,
   },
 ];
 
@@ -33,7 +34,22 @@ export default function CarCarousel() {
   const angleStep = Math.PI / (cars.length - 1);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white text-gray-900 overflow-hidden">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white text-gray-900 overflow-hidden relative">
+      {/* Arrows */}
+      <button
+        onClick={() => handleRotate("left")}
+        className="fixed left-4 top-1/2 -translate-y-1/2 bg-gray-900 hover:bg-gray-700 p-3 rounded-full z-50"
+      >
+        <ChevronLeft className="w-6 h-6 text-white" />
+      </button>
+
+      <button
+        onClick={() => handleRotate("right")}
+        className="fixed right-4 top-1/2 -translate-y-1/2 bg-gray-900 hover:bg-gray-700 p-3 rounded-full z-50"
+      >
+        <ChevronRight className="w-6 h-6 text-white" />
+      </button>
+
       {/* Center Car Image */}
       <div className="flex justify-center items-center mb-10 relative">
         <img
@@ -45,22 +61,6 @@ export default function CarCarousel() {
 
       {/* Circular text selector */}
       <div className="relative w-[500px] h-[250px] flex items-center justify-center">
-        {/* Arrows */}
-        <button
-          onClick={() => handleRotate("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-2 rounded-full"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-
-        <button
-          onClick={() => handleRotate("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-2 rounded-full"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-
-        {/* Names positioned along a half circle */}
         <svg
           width="500"
           height="250"
